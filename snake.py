@@ -11,14 +11,29 @@ from turtle import *
 
 from random import choice
 
+from freegames import square, vectorExercises
+
+1. How do you make the snake faster or slower?
+2. How can you make the snake go around the edges?
+3. How would you move the food?
+4. Change the snake to respond to mouse clicks.
+"""
+
+from random import randrange
+from turtle import *
+
+from random import choice
+
 from freegames import square, vector
 
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
 
-#def cambiar_colores:
-#Aquí se agregá que cada vez que corra el jugeo, la vibora y comida deberán tener colores diferentes entre sí, pero al azar, de una serie de 5 diferentes colores, excepto el rojo.
+colors = ['blue', 'yellow', 'purple', 'orange', 'pink']
+
+color_serpiente = choice(colors)
+color_comida = choice([c for c in colors if c != snake_color])
 
  move_food(food):
     dx = choice([-10, 0, 10])
@@ -62,9 +77,9 @@ def move():
     clear()
 
     for body in snake:
-        square(body.x, body.y, 9, 'black')
+        square(body.x, body.y, 9, color_serpiente)
 
-    square(food.x, food.y, 9, 'green')
+    square(food.x, food.y, 9, color_comida)
     update()
     ontimer(move, 100)
 
@@ -79,3 +94,4 @@ onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
 move()
 done()
+
